@@ -42,4 +42,44 @@ Because the DHCP server was located in a different VLAN from the client devices,
 
 The network uses four VLANs connected through a Cisco 2960 switch. A Cisco 2911 router provides inter-VLAN routing using router-on-a-stick. The switch-to-router connection is configured as an 802.1Q trunk.
 
+## DHCP & DHCP Relay
+
+Server0 was configured as the centralized DHCP server at `192.168.40.10`. Separate DHCP pools were created for the ADMIN, SALES, and IT VLANs.
+
+| Pool | Starting IP | Default Gateway | DNS Server |
+|---|---|---|---|
+| ADMIN | 192.168.10.10 | 192.168.10.1 | 192.168.40.10 |
+| SALES | 192.168.20.10 | 192.168.20.1 | 192.168.40.10 |
+| IT | 192.168.30.10 | 192.168.30.1 | 192.168.40.10 |
+
+Because DHCP clients initially send broadcast requests and routers do not normally forward broadcasts between subnets, clients in VLANs 10, 20, and 30 could not directly reach the DHCP server in VLAN 40.
+
+DHCP relay was configured on the router subinterfaces:
+
+```cisco
+interface g0/0.10
+ ip helper-address 192.168.40.10
+
+interface g0/0.20
+ ip helper-address 192.168.40.10
+
+interface g0/0.30
+ ip helper-address 192.168.40.10
+
+## DNS & HTTP Services
+
+Server0 was also configured to provide DNS and HTTP services.
+
+An IPv4 A record was created to map the internal hostname to the server:
+
+`intranet.atlas.local` → `192.168.40.10`
+
+Clients received `192.168.40.10` as their DNS server through DHCP.
+
+To verify name resolution and application connectivity, PC0 accessed `intranet.atlas.local` through its web browser. DNS resolved the hostname to Server0's IP address, and the HTTP page loaded successfully across VLANs.
+
+![DNS and HTTP Verification](lab02-dns-http-verification.png)
+
 ![Lab 02 Network Topology](lab02-network-topology.png)
+
+
