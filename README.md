@@ -42,4 +42,4 @@ Because the DHCP server was located in a different VLAN from the client devices,
 
 The network uses four VLANs connected through a Cisco 2960 switch. A Cisco 2911 router provides inter-VLAN routing using router-on-a-stick. The switch-to-router connection is configured as an 802.1Q trunk.
 
-![Lab 02 Network Topology](screenshots/lab02-network-topology.png)
+![Lab 02 Network Topology](lab02-network-topology.png)
