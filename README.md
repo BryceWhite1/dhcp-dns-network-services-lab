@@ -83,4 +83,6 @@ To verify name resolution and application connectivity, PC0 accessed `intranet.a
 
 ![Lab 02 Network Topology](lab02-network-topology.png)
 
+![DHCP Client Configuration](lab02-dhcp-client-configuration.png)
+
 
