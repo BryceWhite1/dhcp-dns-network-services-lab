@@ -97,4 +97,33 @@ Because the router does not negotiate a trunk using DTP, I manually configured t
 interface gi0/1
  switchport mode trunk
 
+```markdown
+## What I Learned
+
+- How centralized DHCP can provide addressing to multiple VLANs
+- Why DHCP relay is required when the DHCP server is located on another subnet
+- How `ip helper-address` forwards DHCP requests toward a remote DHCP server
+- How router-on-a-stick provides inter-VLAN routing
+- How an 802.1Q trunk carries traffic for multiple VLANs
+- How DNS A records map hostnames to IPv4 addresses
+- How DHCP can automatically provide clients with DNS and default gateway information
+- How to troubleshoot trunking and DHCP connectivity problems using verification commands and connectivity tests
+
+## Verification
+
+The completed network successfully demonstrated:
+
+- DHCP addressing for VLANs 10, 20, and 30
+- DHCP relay between client VLANs and Server0
+- Inter-VLAN connectivity
+- DNS resolution of `intranet.atlas.local`
+- HTTP access to Server0 using its DNS hostname
+
+## Lab Files
+
+- `Lab02-DHCP-DNS-Network-Services.pkt` — Completed Cisco Packet Tracer topology
+- `lab02-network-topology.png` — Labeled network topology
+- `lab02-dhcp-client-configuration.png` — DHCP client verification
+- `lab02-dns-http-verification.png` — DNS and HTTP verification
+
 
