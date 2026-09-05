@@ -85,4 +85,16 @@ To verify name resolution and application connectivity, PC0 accessed `intranet.a
 
 ![DHCP Client Configuration](lab02-dhcp-client-configuration.png)
 
+## Troubleshooting
+
+### 802.1Q Trunk Not Forming
+
+During configuration, the switch-to-router connection was not operating as a trunk. Verification showed that the switch interface was still using `dynamic auto`.
+
+Because the router does not negotiate a trunk using DTP, I manually configured the switch interface:
+
+```cisco
+interface gi0/1
+ switchport mode trunk
+
 
