@@ -65,6 +65,7 @@ interface g0/0.20
 
 interface g0/0.30
  ip helper-address 192.168.40.10
+```
 
 ## DNS & HTTP Services
 
